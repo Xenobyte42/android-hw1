@@ -1,6 +1,5 @@
 package com.example.hw1.fragments;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,16 +28,15 @@ public class ListFragment extends Fragment {
         if (savedInstanceState != null) {
             numberCount = savedInstanceState.getInt(SAVED_NUMBER_COUNT);
         }
+        mAdapter = new DataAdapter();
         return inflater.inflate(R.layout.list_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView = view.findViewById(R.id.list);
-        mAdapter = new DataAdapter();
-        int numOfColumns = getResources().getConfiguration()
-                .orientation == Configuration.ORIENTATION_LANDSCAPE ? 4 : 3;
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numOfColumns));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),
+                getResources().getInteger(R.integer.element_in_row)));
         recyclerView.setAdapter(mAdapter);
 
         view.findViewById(R.id.add_button).setOnClickListener(viewHolder -> {

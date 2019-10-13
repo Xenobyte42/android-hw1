@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="is_landscape">true</bool>
+    <integer name="element_in_row">4</integer>
 </resources>
