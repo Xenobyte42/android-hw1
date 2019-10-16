@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -63,15 +64,16 @@ public class ListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
+            int color;
             holder.numberView.setText(Integer.toString(position + 1));
             if ((position + 1) % 2 == 0) {
-                holder.numberView.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                color = R.color.red;
             } else {
-                holder.numberView.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                color = R.color.blue;
             }
-
+            holder.numberView.setTextColor(ContextCompat.getColor(getContext(), color));
             holder.containerView.setOnClickListener(view -> {
-                NumberViewFragment fragment = NumberViewFragment.getInstance(position + 1);
+                NumberViewFragment fragment = NumberViewFragment.getInstance(position + 1, color);
                 getFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
