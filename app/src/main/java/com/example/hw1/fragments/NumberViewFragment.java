@@ -22,6 +22,15 @@ public class NumberViewFragment extends Fragment {
     private String number;
     private int color;
 
+    @Override
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            number = savedInstanceState.getString(SAVED_NUMBER);
+            color = savedInstanceState.getInt(SAVED_COLOR);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

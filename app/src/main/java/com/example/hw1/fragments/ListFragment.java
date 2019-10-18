@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +21,14 @@ public class ListFragment extends Fragment {
     private DataAdapter mAdapter;
     private static final String SAVED_NUMBER_COUNT = "saved.numbercount";
     private int numberCount = 100;
+
+    @Override
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            numberCount = savedInstanceState.getInt(SAVED_NUMBER_COUNT);
+        }
+    }
 
     @Nullable
     @Override
@@ -73,6 +80,7 @@ public class ListFragment extends Fragment {
             }
             holder.numberView.setTextColor(ContextCompat.getColor(getContext(), color));
             holder.containerView.setOnClickListener(view -> {
+                Fragment tempFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
                 NumberViewFragment fragment = NumberViewFragment.getInstance(position + 1, color);
                 getFragmentManager()
                     .beginTransaction()
