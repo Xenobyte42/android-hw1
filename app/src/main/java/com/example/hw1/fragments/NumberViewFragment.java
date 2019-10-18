@@ -19,25 +19,10 @@ public class NumberViewFragment extends Fragment {
     private static final String NUMBER_FROM_LIST = "listfragment.number";
     private static final String COLOR_FROM_LIST = "listfragment.color";
 
-    private String number;
-    private int color;
-
-    @Override
-    public void onCreate (Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            number = savedInstanceState.getString(SAVED_NUMBER);
-            color = savedInstanceState.getInt(SAVED_COLOR);
-        }
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            number = savedInstanceState.getString(SAVED_NUMBER);
-            color = savedInstanceState.getInt(SAVED_COLOR);
-        }
         return inflater.inflate(R.layout.number_view, container, false);
     }
 
@@ -45,19 +30,12 @@ public class NumberViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle arguments = getArguments();
         if (arguments != null) {
-            number = arguments.getString(NUMBER_FROM_LIST);
-            color = arguments.getInt(COLOR_FROM_LIST);
+            String number = arguments.getString(NUMBER_FROM_LIST);
+            int color = arguments.getInt(COLOR_FROM_LIST);
+            TextView numberView =  view.findViewById(R.id.number_view_text);
+            numberView.setText(number);
+            numberView.setTextColor(ContextCompat.getColor(getContext(), color));
         }
-        TextView numberView =  view.findViewById(R.id.number_view_text);
-        numberView.setText(number);
-        numberView.setTextColor(ContextCompat.getColor(getContext(), color));
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(SAVED_NUMBER, number);
-        outState.putInt(SAVED_COLOR, color);
     }
 
      public  static NumberViewFragment getInstance(int number, int color) {
