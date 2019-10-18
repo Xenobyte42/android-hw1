@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hw1.OnItemSelected;
 import com.example.hw1.R;
 
 
@@ -80,13 +81,7 @@ public class ListFragment extends Fragment {
             }
             holder.numberView.setTextColor(ContextCompat.getColor(getContext(), color));
             holder.containerView.setOnClickListener(view -> {
-                Fragment tempFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
-                NumberViewFragment fragment = NumberViewFragment.getInstance(position + 1, color);
-                getFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+                ((OnItemSelected)getActivity()).onItemSelected(position + 1, color);
             });
         }
 

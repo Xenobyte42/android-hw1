@@ -60,7 +60,7 @@ public class NumberViewFragment extends Fragment {
         outState.putInt(SAVED_COLOR, color);
     }
 
-     static NumberViewFragment getInstance(int number, int color) {
+     public  static NumberViewFragment getInstance(int number, int color) {
         NumberViewFragment fragment = new NumberViewFragment();
         Bundle bundle = new Bundle();
         bundle.putString(NUMBER_FROM_LIST, String.valueOf(number));
