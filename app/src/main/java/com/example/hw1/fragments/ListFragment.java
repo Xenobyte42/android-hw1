@@ -29,6 +29,7 @@ public class ListFragment extends Fragment {
         if (savedInstanceState != null) {
             numberCount = savedInstanceState.getInt(SAVED_NUMBER_COUNT);
         }
+        mAdapter = new DataAdapter();
     }
 
     @Nullable
@@ -37,7 +38,6 @@ public class ListFragment extends Fragment {
         if (savedInstanceState != null) {
             numberCount = savedInstanceState.getInt(SAVED_NUMBER_COUNT);
         }
-        mAdapter = new DataAdapter();
         return inflater.inflate(R.layout.list_fragment, container, false);
     }
 
